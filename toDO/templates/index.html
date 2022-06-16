@@ -1,12 +1,35 @@
+
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
     <title>Document</title>
 </head>
 <body>
-    <h1>Welcome</h1>
+    {% block header %}
+    <header id="head">
+        <div class="content"> 
+            <a href=""><div class="menu" style="float: left; font-size: 2em;">to DO</div></a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logout' %}"><div class="menu" style="padding-top: 1.5em;padding-bottom:1.5em">Logout</div></a>
+            {% else %}
+            <a href="{% url 'login' %}"><div class="menu" style="padding-top: 1.5em;padding-bottom:1.5em">Login</div></a>
+            {% endif %}
+            <div style="clear: both;"></div>
+        </div>
+    </header>
+    
+{% endblock %}
+{% block content %}
+    <div id="content">
+       <p id="clear">Well done, You don't have tasks! <br>
+       <a href="">ADD</a>
+        </p>
+    </div>
+    {% endblock %}
 </body>
 </html>

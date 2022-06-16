@@ -1,0 +1,59 @@
+*{
+    box-sizing: border-box;
+}
+html, body {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: white;
+    margin: 0%;
+    padding: 0%;
+    height: 100%;
+}
+a{
+    text-decoration: none;
+    color: blue;
+}
+form{
+    margin-top: 10vh;
+    padding: 0.5em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.form{
+    background-color: aquamarine;
+    color: gray;
+    max-width: 30%;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.button{
+    background-color: lightblue;
+    color: black;
+    border-radius: 10px;
+    border: none;
+    padding: 1em;
+    font-size: 15px;
+}
+input :hover{
+    cursor: pointer;
+}
+header{
+    background-color: lightgreen;
+    text-align: center;
+}
+.menu{
+    
+    color:black;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    float: right;
+    font-size:1.5em;
+}
+#clear{
+    text-align: center;
+    margin-top: 40vh;
+}
+#content{
+    text-align: center;
+}
