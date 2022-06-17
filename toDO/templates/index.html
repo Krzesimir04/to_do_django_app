@@ -30,7 +30,7 @@
         {% if user.is_authenticated %}
 
        <p>Well done, You don't have tasks! <br>
-       <a href="">ADD</a>
+       <a href="{% url 'new' %}">ADD</a>
         </p>
 
         {% else %}

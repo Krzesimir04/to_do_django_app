@@ -1,6 +1,8 @@
+from http.client import NETWORK_AUTHENTICATION_REQUIRED
 from django.shortcuts import redirect, render
-from .forms import NewUserForm,LoginForm
-from django.contrib.auth.forms import UserCreationForm
+
+from .models import Task
+from .forms import NewUserForm,LoginForm,NewTaskForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.models import User
@@ -55,3 +57,17 @@ def loginFunction(request):
 def logoutFunction(request):
     logout(request)
     return redirect('login')
+
+def new(request):
+    if request.method=='POST':
+        form=NewTaskForm(request.POST)
+        header=request.POST['header']
+        category=request.POST['category']
+        describtion=request.POST['describtion']
+        end_date=request.POST['end_date']
+        
+        newTask=Task
+        return redirect('index')
+    else:
+        form=NewTaskForm()
+    return render(request, 'new.html',{'form':form})
