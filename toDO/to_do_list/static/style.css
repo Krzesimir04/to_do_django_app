@@ -18,20 +18,22 @@ form{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .form{
-    background-color: aquamarine;
-    color: gray;
+    background-color: lightgreen;
+    color: black;
     max-width: 30%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
 .button{
-    background-color: lightblue;
+    background-color: rgb(238, 225, 103);
     color: black;
     border-radius: 10px;
     border: none;
     padding: 1em;
     font-size: 15px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 input :hover{
     cursor: pointer;
@@ -39,6 +41,8 @@ input :hover{
 header{
     background-color: lightgreen;
     text-align: center;
+    border-bottom: 5px black solid;
+    margin-bottom: 2em;
 }
 .menu{
     
@@ -49,10 +53,6 @@ header{
     padding-bottom: 1em;
     float: right;
     font-size:1.5em;
-}
-#clear{
-    text-align: center;
-    margin-top: 40vh;
 }
 #content{
     text-align: center;

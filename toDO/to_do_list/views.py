@@ -3,6 +3,7 @@ from .forms import NewUserForm,LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from django.contrib.auth.models import User
 # Create your views here.
 
 
@@ -14,11 +15,20 @@ def register(request):
     if request.method == 'POST':
         form=NewUserForm(request.POST)
         if form.is_valid():
+            email=form.cleaned_data.get('emal')
+            if User.objects.filter(email=email) is not None:
+                messages.info(request,'there already is user with this email, please change your email')
+                return redirect('register')
             form.save()
             messages.success(request,'Account Created')
             return redirect('login')
         else:
-            messages.info(request,'Something is not OK')
+            username=form.cleaned_data.get('username')
+            if User.objects.filter(username=username) is not None:
+                messages.info(request,'there already is user with this name, please change your username')
+                return redirect('register')
+            
+            messages.info(request,'passwords are not the same')
             return redirect('register')
     else:
         form=NewUserForm()

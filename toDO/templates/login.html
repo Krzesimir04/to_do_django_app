@@ -4,15 +4,23 @@
 <div class="form">
     <form action="" method="post">
         {% csrf_token %}
-        {{form.username.label}}
-        {{form.username}}
-        {{form.password.label}}
+        <p>
+            {{form.username.label}} <br>
+            {{form.username}}
+        </p>
+        <p>
+
+        {{form.password.label}} <br>
         {{form.password}}
+        
+        </p>
         {% for message in messages %}
         <p>{{message}}</p>
         {% endfor %}
-        <input type="submit" class="button">
+        <input type="submit" class="button"> <br><br>
+        or <a href="{% url 'register' %}">Sing up</a>
     </form>
+    
 </div>
 
 {% endblock %}

@@ -13,7 +13,7 @@
     {% block header %}
     <header id="head">
         <div class="content"> 
-            <a href=""><div class="menu" style="float: left; font-size: 2em;">to DO</div></a>
+            <a href="{% url 'index' %}"><div class="menu" style="float: left; font-size: 2em;">to DO</div></a>
             {% if user.is_authenticated %}
             <a href="{% url 'logout' %}"><div class="menu" style="padding-top: 1.5em;padding-bottom:1.5em">Logout</div></a>
             {% else %}
@@ -26,9 +26,16 @@
 {% endblock %}
 {% block content %}
     <div id="content">
-       <p id="clear">Well done, You don't have tasks! <br>
+
+        {% if user.is_authenticated %}
+
+       <p>Well done, You don't have tasks! <br>
        <a href="">ADD</a>
         </p>
+
+        {% else %}
+        login to add new task
+        {% endif %}
     </div>
     {% endblock %}
 </body>
