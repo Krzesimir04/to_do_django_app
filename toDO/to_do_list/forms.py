@@ -17,6 +17,6 @@ class LoginForm(Form):
 
 class NewTaskForm(Form):
     header=CharField(max_length=50)
-    category=ModelChoiceField(queryset=Category.objects.all(),empty_label='None',blank=True)
-    describtion=CharField(widget=Textarea)
-    end_date=DateTimeField(label='Date to end',widget=MyDateInput)
+    category=ModelChoiceField(queryset=Category.objects.all(),empty_label='None',required=False)
+    describtion=CharField(widget=Textarea,required=False)
+    end_date=DateTimeField(label='Date to end',widget=MyDateInput,required=False)
