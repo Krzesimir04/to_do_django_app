@@ -14,5 +14,5 @@ class Task(models.Model):
     category=models.ForeignKey(Category,null=True,on_delete=models.CASCADE,)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     def __str__(self):
-        return self.header
+        return self.header,self.end_date
 

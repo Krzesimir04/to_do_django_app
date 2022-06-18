@@ -1,3 +1,5 @@
+from datetime import datetime
+from email.policy import default
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Category
@@ -19,4 +21,4 @@ class NewTaskForm(Form):
     header=CharField(max_length=50)
     category=ModelChoiceField(queryset=Category.objects.all(),empty_label='None',required=False)
     describtion=CharField(widget=Textarea,required=False)
-    end_date=DateTimeField(label='Date to end',widget=MyDateInput,required=False)
+    end_date=DateTimeField(label='Date to end',widget=MyDateInput,required=False,initial=datetime.now)

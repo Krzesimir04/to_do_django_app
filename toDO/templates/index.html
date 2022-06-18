@@ -29,10 +29,34 @@
 
         {% if user.is_authenticated %}
 
-       <p>Well done, You don't have tasks! <br>
-       <a href="{% url 'new' %}">ADD</a>
-        </p>
 
+       <p>Add new task! <br>
+       <a href="{% url 'new' %}">ADD</a></p>
+
+        
+
+        {% for task in tasks %}
+        <div class="task">
+           <div class="task_header">{{task.header}}</div> 
+           <div style="clear:both;"></div>
+        <table>
+            <tr>
+                <td class="table_header">Deadline</td>
+                <td class="table_header">Describtion</td>
+                <td class="table_header">Category</td>
+            </tr>
+            <tr>
+                <td>{{task.end_date}}</td>
+                <td>{{task.describtion | truncatewords:"10" }}</td>
+                <td>{{task.category}}</td>
+            </tr>
+            
+        </table>
+        <div class="intask_button"><a href="/delete/{{task.id}}">DELETE</a></div>
+            <div class="intask_button"><a href="/edit/{{task.id}}">EDIT</a></div>
+           
+        </div>
+        {% endfor %}
         {% else %}
         login to add new task
         {% endif %}
