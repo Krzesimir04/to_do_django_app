@@ -9,4 +9,5 @@ urlpatterns = [
     path('new',new,name='new'),
     path('edit/<str:pk>',edit,name='edit'),
     path('delete/<str:pk>',delete,name='delete'),
+    
 ]

@@ -1,23 +1,23 @@
+from curses.ascii import HT
 from datetime import datetime
 from django.shortcuts import redirect, render
 from .models import *
 from .forms import NewUserForm,LoginForm,NewTaskForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from django.contrib.auth.models import User,AnonymousUser
+from django.contrib.auth.models import User
 
 
 
 # Create your views here.
-
-
 def index(request):
     
     if  request.user in User.objects.all():
         tasks=Task.objects.filter(user=request.user)
-        
-        return render(request,'index.html',{'tasks':tasks})
-
+        if tasks.exists():
+            return render(request,'index.html',{'tasks':tasks})
+        else:
+            return render(request,'index.html')
     else:
         return render(request,'index.html')
 
@@ -96,34 +96,36 @@ def delete(request,pk):
 def edit(request,pk):
     if request.method=='POST':
         task=Task.objects.filter(id=pk,user=request.user)
-
         EditForm=NewTaskForm(request.POST)
+    
         if EditForm.is_valid():
             header=request.POST['header']
             describtion=request.POST['describtion']
             end_date=request.POST['end_date']
             category_number=request.POST['category']
+
             if category_number != '':
                 category=Category.objects.get(id=category_number)
-                if end_date == '':
-                    task.update(header=header,category=category,describtion=describtion,end_date=datetime.now().isoformat(),user=request.user)
-                else:
-                    task.update(header=header,category=category,describtion=describtion,end_date=end_date,user=request.user)
+                validator(request,end_date,task,header,category,describtion)
             else:
-                if end_date == '':
-                    task.update(header=header,describtion=describtion,end_date=datetime.now().isoformat(),user=request.user)
-                else:
-                    task.update(header=header,describtion=describtion,end_date=end_date,user=request.user)
-
+                validator(request,end_date,task,header,None,describtion)
             return redirect('index')
+
         else:
             task=Task.objects.get(id=pk,user=request.user)
             EditForm=NewTaskForm(initial=[{'header':task.header,'describtion':task.describtion,'end_date':task.end_date,'category':task.category}])
         return render(request,'edit.html',{'form':EditForm})
-        
 
     elif request.method=='GET':
         task=Task.objects.get(id=pk,user=request.user)
         EditForm=NewTaskForm(initial={'header':task.header,'describtion':task.describtion,'end_date':task.end_date,'category':task.category})
         return render(request,'edit.html',{'form':EditForm})
     return redirect('index')
+
+
+
+def validator(request,end_date,task,header,category,describtion):
+    if end_date == '':
+        task.update(header=header,category=category,describtion=describtion,end_date=datetime.now().isoformat(),user=request.user)
+    else:
+        task.update(header=header,category=category,describtion=describtion,end_date=end_date,user=request.user)
