@@ -61,7 +61,6 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'toDO.urls'
 
-ADMINS=(('admin','admin@admin.pl'),)
 
 ALLOWED_HOSTS= ['toDO.com','www.toDO.com','*']
 
