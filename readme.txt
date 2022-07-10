@@ -1,6 +1,8 @@
 To do app
 
 Commands:
-source to_do_env/bin/activate
+python -m venv env
+source env/bin/activate
+pip install -r requirements.txt
 cd toDO
 python manage.py runserver
