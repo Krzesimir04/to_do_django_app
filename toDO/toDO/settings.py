@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-DEBUG=True
+DEBUG=False
 
 SECURE_SSL_REDIRECT=False
 SESSION_COOKIE_SECURE=False
