@@ -17,7 +17,7 @@ DEBUG=True
 SECURE_SSL_REDIRECT=False
 SESSION_COOKIE_SECURE=False
 CSRF_COOKIE_SECURE=False
-CSRF_TRUSTED_ORIGINS=['https://tododjangoapp-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS=['https://tododjangoapp-production.up.railway.app']
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
