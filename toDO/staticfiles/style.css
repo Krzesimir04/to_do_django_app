@@ -1,0 +1,75 @@
+*{
+    box-sizing: border-box;
+}
+html, body {
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+a{
+    text-decoration: none;
+    color: blue;
+    margin: 0.4em;
+}
+form{
+    margin: 10vh;
+    padding: 2em;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: lightgreen;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 30%;
+}
+.button{
+    background-color: rgb(238, 225, 103);
+    color: black;
+    border-radius: 10px;
+    border: none;
+    padding: 1em;
+    font-size: 15px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+input :hover{
+    cursor: pointer;
+}
+header{
+    background-color: lightgreen;
+    border-bottom: 5px black solid;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.menu{
+    margin: 1em;
+    color:black;
+    font-size:1.5em;
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+}
+
+.task{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    color: black;
+    background-color: rgb(170, 242, 170);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 2px;
+    padding-top: 1em;
+    padding-bottom: 3em;
+    }
+table{
+        width: 100%;
+    }
