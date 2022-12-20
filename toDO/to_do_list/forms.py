@@ -1,10 +1,10 @@
 from datetime import datetime
-from email.policy import default
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .models import Category
 from django.forms import CharField, Form,PasswordInput,ModelChoiceField,Textarea,DateTimeField,DateTimeInput
 
+#widget for end_date in NewTaslForm
 class MyDateInput(DateTimeInput):
     input_type='datetime-local'
 

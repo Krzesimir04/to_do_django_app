@@ -1,7 +1,6 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<div class="form">
     <form action="" method="post">
         {% csrf_token %}
         <p>
@@ -12,15 +11,14 @@
 
         {{form.password.label}} <br>
         {{form.password}}
-        
+
         </p>
         {% for message in messages %}
         <p>{{message}}</p>
         {% endfor %}
         <input type="submit" class="button"> <br><br>
-        or <a href="{% url 'register' %}">Sing up</a>
+        <a href="{% url 'register' %}">Sing up</a>
     </form>
-    
-</div>
+
 
 {% endblock %}

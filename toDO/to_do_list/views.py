@@ -1,4 +1,3 @@
-from curses.ascii import HT
 from datetime import datetime
 from django.shortcuts import redirect, render
 from .models import *
@@ -11,7 +10,7 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def index(request):
-    
+    #check if user is login and show his tasks.
     if  request.user in User.objects.all():
         tasks=Task.objects.filter(user=request.user)
         if tasks.exists():
@@ -43,7 +42,7 @@ def register(request):
             messages.success(request,'Account Created')
             return redirect('login')
         else:
-            messages.info(request,'Something is not OK, maybey password is too easy')
+            messages.info(request,'Something is not OK, maybey password is too simple')
             return redirect('register')
     else:
         form=NewUserForm()
@@ -74,15 +73,19 @@ def logoutFunction(request):
 def new(request):
     if request.method=='POST':
         form=NewTaskForm(request.POST)
+
         header=request.POST['header']
         describtion=request.POST['describtion']
         end_date=request.POST['end_date']
         category_number=request.POST['category']
+
+#if category is None then don't set this option
         if category_number != '':
             category=Category.objects.get(id=category_number)
             newTask=Task(header=header,category=category,describtion=describtion,end_date=end_date,user=request.user)
         else:
             newTask=Task(header=header,describtion=describtion,end_date=end_date,user=request.user)
+
         newTask.save()
         return redirect('index')
     else:
@@ -97,13 +100,13 @@ def edit(request,pk):
     if request.method=='POST':
         task=Task.objects.filter(id=pk,user=request.user)
         EditForm=NewTaskForm(request.POST)
-    
+
         if EditForm.is_valid():
             header=request.POST['header']
             describtion=request.POST['describtion']
             end_date=request.POST['end_date']
             category_number=request.POST['category']
-
+#validate category and end_date(validator)
             if category_number != '':
                 category=Category.objects.get(id=category_number)
                 validator(request,end_date,task,header,category,describtion)
@@ -114,8 +117,9 @@ def edit(request,pk):
         else:
             task=Task.objects.get(id=pk,user=request.user)
             EditForm=NewTaskForm(initial=[{'header':task.header,'describtion':task.describtion,'end_date':task.end_date,'category':task.category}])
-        return render(request,'edit.html',{'form':EditForm})
+            return render(request,'edit.html',{'form':EditForm})
 
+#sending user a form with full data about task to edit it
     elif request.method=='GET':
         task=Task.objects.get(id=pk,user=request.user)
         EditForm=NewTaskForm(initial={'header':task.header,'describtion':task.describtion,'end_date':task.end_date,'category':task.category})
@@ -123,7 +127,7 @@ def edit(request,pk):
     return redirect('index')
 
 
-
+#checking end_date
 def validator(request,end_date,task,header,category,describtion):
     if end_date == '':
         task.update(header=header,category=category,describtion=describtion,end_date=datetime.now().isoformat(),user=request.user)

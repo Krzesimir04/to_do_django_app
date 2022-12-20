@@ -1,7 +1,6 @@
 {% extends 'index.html' %}
 
 {% block content %}
-<div class="form">
     <form action="" method="post">
         {% csrf_token %}
         {% for field in form %}
@@ -10,6 +9,5 @@
         {% endfor %}
         <input type="submit" class="button">
     </form>
-</div>
 
 {% endblock %}

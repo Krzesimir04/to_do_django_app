@@ -3,27 +3,25 @@
 }
 html, body {
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: white;
-    margin: 0%;
-    padding: 0%;
+    margin: 0;
+    padding: 0;
     height: 100%;
 }
 a{
     text-decoration: none;
     color: blue;
+    margin: 0.4em;
 }
 form{
-    margin-top: 10vh;
-    padding: 0.5em;
+    margin: 10vh;
+    padding: 2em;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-.form{
     background-color: lightgreen;
-    color: black;
-    max-width: 30%;
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 30%;
 }
 .button{
     background-color: rgb(238, 225, 103);
@@ -40,27 +38,28 @@ input :hover{
 }
 header{
     background-color: lightgreen;
-    text-align: center;
     border-bottom: 5px black solid;
     margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 .menu{
-    
+    margin: 1em;
     color:black;
-    padding-left: 2em;
-    padding-right: 2em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-    float: right;
     font-size:1.5em;
 }
-#content{
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     text-align: center;
+    width: 100%;
 }
 
 .task{
     width: 90%;
-    
     margin-left: auto;
     margin-right: auto;
     margin-top: 1em;
@@ -69,41 +68,8 @@ header{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 2px;
     padding-top: 1em;
-    padding-bottom: 5em;
+    padding-bottom: 3em;
     }
-.intask{
-    min-width: 30vh;
-    max-width: 25%;
-    padding-left: 2em;
-    padding-right: 2em;
-    float: left;
-    
-    text-align: center;
-	vertical-align: middle;
-
-}
-.intask_button{
-    float: right;
-    margin-right: 1em ;
-}
-.task_header{
-    font-size: 25px;
-    text-align: center;
-    margin-bottom: 1em;
-    padding: 0.2em;
-}
 table{
-    float: left;
-    text-align: center;
-}
-td{
-    text-align: center;
-    min-width: 40vh;
-    margin-bottom: 0.5em;
-}
-tr{
-    text-align: center;
-}
-.table_header{
-    font-size: 20px;
-}
+        width: 100%;
+    }
