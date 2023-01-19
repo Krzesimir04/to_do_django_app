@@ -1,5 +1,7 @@
 {% extends 'index.html' %}
+{% load static %}
 {% block content %}
+    <img src="{% static 'checklist.png' %}" alt="checklist" id="gallery">
     <form action="" method="post">
     {% csrf_token %}
         {% for field in form %}
@@ -13,5 +15,6 @@
         {% endfor %}
         <input class="button" type="submit">
     </form>
+    <script src="{% static 'slider.js' %}"></script>
 
 {% endblock %}

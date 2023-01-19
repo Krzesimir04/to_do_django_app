@@ -1,6 +1,9 @@
 {% extends 'index.html' %}
+{% load static %}
+
 
 {% block content %}
+    <img src="{% static 'checklist.png' %}" alt="checklist" id="gallery">
     <form action="" method="post">
         {% csrf_token %}
         <p>
@@ -16,9 +19,10 @@
         {% for message in messages %}
         <p>{{message}}</p>
         {% endfor %}
-        <input type="submit" class="button"> <br><br>
+        <input type="submit">
         <a href="{% url 'register' %}">Sing up</a>
     </form>
+    <script src="{% static 'slider.js' %}"></script>
 
 
 {% endblock %}

@@ -11,12 +11,15 @@
 <body>
     {% block header %}
     <header>
-            <a href="{% url 'index' %}"class="menu">to DO</a>
-            {% if user.is_authenticated %}
-            <a href="{% url 'logout' %}"class="menu">Logout</a>
-            {% else %}
-            <a href="{% url 'login' %}"class="menu">Login</a>
-            {% endif %}
+            <a href="{% url 'index' %}"><img src="{% static 'logo.png' %}" alt="logo"/></a>
+            <nav>
+                {% if user.is_authenticated %}
+                <a href="{% url 'logout' %}"class="menu">Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}"class="menu">Login</a>
+                <a href="{% url 'register' %}"class="menu">Register</a>
+                {% endif %}
+            </nav>
     </header>
 
 {% endblock %}
@@ -24,8 +27,7 @@
 {% block content %}
         {% if user.is_authenticated %}
 
-       <p>Add new task! <br>
-       <a href="{% url 'new' %}">ADD</a></p>
+        <a href="{% url 'new' %}" class="menu">ADD</a>
 
         {% for task in tasks %}
         <div class="task">
@@ -41,8 +43,8 @@
                 </td>
             </tr>
             <tr>
-                <td>{{task.end_date}}</td>
-                <td>{{task.describtion | truncatewords:"10" }}</td>
+                <td>{{task.end_date | date:"d.m.Y" }}</td>
+                <td>{{task.describtion | truncatechars:"40" }}</td>
                 <td>{{task.category}}</td>
             </tr>
 
@@ -51,7 +53,28 @@
         </div>
         {% endfor %}
         {% else %}
-        <p>login to add new task</p>
+        <h1><a href="{% url 'login' %}">Login</a> to add new task</h1>
+        <img src="{% static 'pointer.png' %}" alt="^" id="pointer"/>
+
+        <div class="task" id="main-site-task">
+            <h2>Your task</h2>
+         <table>
+             <tr>
+                 <td><h3>Deadline</h3></tds=>
+                 <td><h3>Describtion</h3></td>
+                 <td><h3>Category</h3></td>
+                 <td>
+                     <a href="">DELETE</a>
+                     <a href="">EDIT</a>
+                 </td>
+             </tr>
+             <tr>
+                 <td>Date</td>
+                 <td>clean the kitchen</td>
+                 <td>Home</td>
+             </tr>
+         </table>
+         </div>
         {% endif %}
     {% endblock %}
 </main>

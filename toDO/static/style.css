@@ -1,36 +1,85 @@
 *{
     box-sizing: border-box;
 }
+
+@keyframes sliding {
+    0%{
+        transform: translateY(0);
+    }
+    50%{
+        transform: translateY(20px);
+    }
+    100%{
+        transform: translateY(0);
+    }
+}
+@keyframes turning {
+    from{
+        transform: rotate(0);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+@keyframes half-opacity {
+    0%{
+        opacity: 0.5;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0.5;
+    }
+}
+@keyframes full-opacity {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
 html, body {
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:'Franklin Gothic Medium', Arial, sans-serif;
     margin: 0;
     padding: 0;
     height: 100%;
+    background-color: rgb(20, 20, 20);
 }
 a{
     text-decoration: none;
-    color: blue;
+    color: white;
     margin: 0.4em;
 }
 form{
-    margin: 10vh;
+    margin-top: 1em;
     padding: 2em;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: lightgreen;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
+    background-color: rgb(94, 199, 94);
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 30%;
+    color: black;
 }
-.button{
-    background-color: rgb(238, 225, 103);
+input, textarea, select{
+    background-color: rgb(226, 226, 226);
+    border: none;
+    padding: 5px;
+    margin: 10px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
+}
+input[type=submit]{
     color: black;
     border-radius: 10px;
     border: none;
     padding: 1em;
     font-size: 15px;
-    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.5);
     cursor: pointer;
 }
 input :hover{
@@ -38,16 +87,37 @@ input :hover{
 }
 header{
     background-color: lightgreen;
-    border-bottom: 5px black solid;
     margin-bottom: 1em;
     display: flex;
+    justify-content: center;
+    gap: 50%;
+}
+a img{
+    width: 4em;
+}
+header img:hover{
+    animation-name: turning;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(.52,-0.66,.52,1.64);
+    animation-iteration-count: infinite;
+}
+nav{
+    display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 10%;
 }
 .menu{
-    margin: 1em;
+    background-color: rgb(94, 199, 94);
+    padding: 10px;
+    width: 6em;
     color:black;
     font-size:1.5em;
+    text-align: center;
+    border-radius: 10px;
+}
+.menu:hover{
+    background-color: rgb(76, 172, 76);
 }
 main{
     display: flex;
@@ -55,21 +125,74 @@ main{
     align-items: center;
     flex-direction: column;
     text-align: center;
-    width: 100%;
+    color:white;
 }
 
 .task{
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+    width: 70%;
     margin-top: 1em;
     color: black;
-    background-color: rgb(170, 242, 170);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: lightgreen;
+    box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.2), 0 6px 20px 0 rgba(255, 255, 255, 0.19);
     border-radius: 2px;
-    padding-top: 1em;
-    padding-bottom: 3em;
-    }
+    padding-bottom: 2em;
+}
+.task a, form a, main a{
+    text-decoration: underline;
+    color: black;
+}
+main a{
+    color: white;
+}
 table{
         width: 100%;
+}
+td{
+    width: 25%;
+}
+#pointer{
+    width: 40px;
+    position: relative;
+    left: -125px;
+    margin-bottom:2em;
+    animation: sliding 3s ease-in-out infinite;
+}
+#main-site-task{
+    animation: half-opacity 5s ease-in-out infinite;
+    opacity: 0.5;
+}
+#gallery{
+    animation: full-opacity 5s ease-in-out infinite;
+    height: 150px;
+    position: relative;
+}
+
+@media (max-width: 1000px){
+    textarea{
+        width: 90%;
     }
+}
+@media (max-width: 800px){
+    form{
+        width: 80%;
+    }
+    header{
+        gap: 20%;
+    }
+    .task{
+        width: 95%;
+    }
+}
+
+@media (max-width: 500px){
+    header, nav{
+        gap: 0;
+    }
+    .task{
+        width: 100%;
+    }
+    .menu{
+        width: 5em;
+        padding: 5px;
+    }
+}

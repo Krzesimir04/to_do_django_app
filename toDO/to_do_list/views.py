@@ -129,7 +129,7 @@ def edit(request,pk):
 
 #checking end_date
 def validator(request,end_date,task,header,category,describtion):
-    if end_date == '':
-        task.update(header=header,category=category,describtion=describtion,end_date=datetime.now().isoformat(),user=request.user)
+    if end_date == '' or end_date<str(datetime.now().date()):
+        task.update(header=header,category=category,describtion=describtion,end_date=datetime.now().date(),user=request.user)
     else:
         task.update(header=header,category=category,describtion=describtion,end_date=end_date,user=request.user)

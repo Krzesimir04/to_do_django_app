@@ -8,12 +8,12 @@ class Category(models.Model):
         return self.name
 
 class Task(models.Model):
-    header=models.CharField(max_length=50,null=True)
+    header=models.CharField(max_length=50)
     describtion=models.TextField(null=True)
-    end_date=models.DateTimeField(null=True,auto_now=True)
+    end_date=models.DateField(null=True)
     category=models.ForeignKey(Category,null=True,on_delete=models.CASCADE,)
     user=models.ForeignKey(User,on_delete=models.CASCADE,null=True)
 
     def __str__(self):
-        return self.header
+        return str(self.end_date)
 
