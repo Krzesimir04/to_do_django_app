@@ -25,6 +25,26 @@ You can see your tasks on the main page.
 
 ![main with tasks](./img/main_with_task.png)
 
-# Installation
+# Installation on local machine
 
+If you want to test app on your machine you can download repo, make virtual enviroment, download packages and runserver on your computer (you must have python 3.8 installed).
 
+```
+mkdir to_do
+cd to_do
+git init
+git clone -b master https://github.com/Krzesimir04/to_do_django_app
+cd to_do_django_app
+python -m venv env
+source env/bin/activate
+cd toDO
+pip install -r requirements.txt
+python manage.py runserver
+```
+
+If you are on windows use ./env/Scripts/activate instead of source env/bin/activate.
+
+# Additional information
+
+- Password validation is switched off (only minimum length is turned on)
+- Python versions used with django: https://docs.djangoproject.com/en/4.1/faq/install/#what-python-version-can-i-use-with-django
