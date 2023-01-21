@@ -5,7 +5,7 @@ from .forms import NewUserForm,LoginForm,NewTaskForm
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -24,26 +24,22 @@ def index(request):
 def register(request):
     if request.method == 'POST':
         form=NewUserForm(request.POST)
-        if form.is_valid():
-            username=form.cleaned_data.get('username')
-            if User.objects.filter(username=username).exists():
-                messages.info(request,'there already is user with this name, please change your username')
-                return redirect('register')
-            email=form.cleaned_data.get('emal')
-            if User.objects.filter(email=email).exists():
-                messages.info(request,'there already is user with this email, please change your email')
-                return redirect('register')
-            password1=form.cleaned_data.get('password1')
-            password2=form.cleaned_data.get('password2')
-            if password1!=password2:
-                messages.info(request,'passwords are not the same')
-                return redirect('register')
-            form.save()
-            messages.success(request,'Account Created')
-            return redirect('login')
-        else:
-            messages.info(request,'Something is not OK, maybey password is too simple')
+        username=request.POST['username']
+        if User.objects.filter(username=username).exists():
+            messages.info(request,'there already is user with this name, please change your username')
             return redirect('register')
+        email=request.POST['email']
+        if User.objects.filter(email=email).exists():
+            messages.info(request,'there already is user with this email, please change your email')
+            return redirect('register')
+        password1=request.POST['password1']
+        password2=request.POST['password2']
+        if password1!=password2:
+            messages.info(request,'passwords are not the same')
+            return redirect('register')
+        form.save()
+        messages.success(request,'Account Created')
+        return redirect('login')
     else:
         form=NewUserForm()
     return render(request, 'register.html',{'form':form})
@@ -70,6 +66,7 @@ def logoutFunction(request):
     logout(request)
     return redirect('login')
 
+@login_required(login_url='login')
 def new(request):
     if request.method=='POST':
         form=NewTaskForm(request.POST)
@@ -92,10 +89,12 @@ def new(request):
         form=NewTaskForm()
     return render(request, 'new.html',{'form':form})
 
+@login_required(login_url='login')
 def delete(request,pk):
     Task.objects.filter(id=pk,user=request.user).delete()
     return redirect('index')
 
+@login_required(login_url='login')
 def edit(request,pk):
     if request.method=='POST':
         task=Task.objects.filter(id=pk,user=request.user)
