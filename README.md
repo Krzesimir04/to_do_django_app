@@ -42,7 +42,7 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 
-If you are on windows use ./env/Scripts/activate instead of source env/bin/activate.
+If you are on windows use `./env/Scripts/activate` instead of `source env/bin/activate`.
 
 # Additional information
 
